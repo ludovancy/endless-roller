@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0n3q2mbjn6k3"]
+
+[ext_resource type="PackedScene" uid="uid://c0r0yoc40yjw4" path="res://player.tscn" id="1_5rmnj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ilida"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ay0d2"]
+sky_material = SubResource("ProceduralSkyMaterial_ilida")
+
+[sub_resource type="Environment" id="Environment_kmf0a"]
+background_mode = 2
+sky = SubResource("Sky_ay0d2")
+tonemap_mode = 2
+
+[sub_resource type="Curve3D" id="Curve3D_xbb6r"]
+bake_interval = 0.01
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.85376, 0, -2.2046, 0, 0, 0, 0, 0, 0, 3.95418, 0, -2.26843, 0, 0, 0, 0, 0, 0, 4.43924, 0, 1.07592, 0, 0, 0, 0, 0, 0, 1.13031, 0, 4.52261, 0, 0, 0, 0, 0, 0, -4.16083, 0, 0.388908, 0, 0, 0, 0, 0, 0, -1.85376, 0, -2.2046),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kmf0a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_5rmnj")]
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_xbb6r")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+polygon = PackedVector2Array(0, 0, 0, 0.2, 1, 0.2, 1, 0)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 0.75
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.56
+path_joined = true
