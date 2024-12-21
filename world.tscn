@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0n3q2mbjn6k3"]
+[gd_scene load_steps=7 format=3 uid="uid://d0n3q2mbjn6k3"]
 
 [ext_resource type="PackedScene" uid="uid://c0r0yoc40yjw4" path="res://player.tscn" id="1_5rmnj"]
+[ext_resource type="Script" path="res://src/world.gd" id="1_dn3g7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ilida"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,14 +16,14 @@ sky = SubResource("Sky_ay0d2")
 tonemap_mode = 2
 
 [sub_resource type="Curve3D" id="Curve3D_xbb6r"]
-bake_interval = 0.01
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.85376, 0, -2.2046, 0, 0, 0, 0, 0, 0, 3.95418, 0, -2.26843, 0, 0, 0, 0, 0, 0, 4.43924, 0, 1.07592, 0, 0, 0, 0, 0, 0, 1.13031, 0, 4.52261, 0, 0, 0, 0, 0, 0, -4.16083, 0, 0.388908, 0, 0, 0, 0, 0, 0, -1.85376, 0, -2.2046),
+"points": PackedVector3Array(0, 0, 0, 3.125, 0, -1.99, -1.85376, 0, -2.2046, 0, 0, 0, 1.8, 0, 2.255, 3.95418, 0, -2.26843, 0.035, 0, 0.495, -1.105, 0, 2.04, 4.23933, 2.38419e-07, 2.56381, 1.03, 0, 0.13, -1.075, 0, 0.62, 1.13031, 0, 4.52261, -0.795, 0, 2.325, -0.105, 0, -0.21, -3.12925, 0, 1.19319, -0.57, 0, -0.015, 0, 0, 0, -1.85376, 0, -2.2046),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_dn3g7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kmf0a")
@@ -40,11 +41,27 @@ curve = SubResource("Curve3D_xbb6r")
 polygon = PackedVector2Array(0, 0, 0, 0.2, 1, 0.2, 1, 0)
 mode = 2
 path_node = NodePath("../Path3D")
-path_interval_type = 0
-path_interval = 0.75
+path_interval_type = 1
+path_interval = 0.2
 path_simplify_angle = 0.0
 path_rotation = 2
 path_local = false
 path_continuous_u = true
-path_u_distance = 1.56
+path_u_distance = 1.28
+path_joined = true
+
+[node name="Path3D2" type="Path3D" parent="."]
+curve = SubResource("Curve3D_xbb6r")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
+polygon = PackedVector2Array(0, 0, 0, 0.2, 1, 0.2, 1, 0)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 1
+path_interval = 0.2
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.28
 path_joined = true
