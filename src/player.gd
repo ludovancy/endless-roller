@@ -1,11 +1,16 @@
 extends Node3D
 
+signal request_new_path(paths_remaining)
+
 @onready var character_body_3d: CharacterBody3D = $CharacterBody3D
 @export var road_width : float = 9.0
+@export var init_speed : float = 0.2
+var speed = init_speed
 var dragging: bool = false
 
 var t = 0
 var curve : Curve3D = null
+var next_curves : Array = []
 
 func _ready() -> void:
 	get_parent().connect("new_curve", set_new_curve)
@@ -32,8 +37,15 @@ func _process(delta: float) -> void:
 	if not curve:
 		print("No curve")
 		return
-	t += delta
-	position = curve.sample_baked(t * curve.get_baked_length(), true)
+	t += delta * speed
+	transform = curve.sample_baked_with_rotation(t * curve.get_baked_length(), true)
+	if t > 1:
+		t -= 1
+		curve = next_curves.pop_front()
+		request_new_path.emit(len(next_curves))
 
 func set_new_curve(new_curve : Curve3D):
-	curve = new_curve
+	if curve == null:
+		curve = new_curve
+		return
+	next_curves.append(new_curve)
