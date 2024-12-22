@@ -31,7 +31,6 @@ func _input(event: InputEvent) -> void:
 		new_position *= -road_width
 		new_position += road_width / 2
 		character_body_3d.position.x = new_position
-		print(new_position)
 
 func _process(delta: float) -> void:
 	if not curve:
