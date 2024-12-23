@@ -48,13 +48,15 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_5rmnj")]
 
-[node name="Path3D" type="Path3D" parent="."]
+[node name="PathRoot" type="Node3D" parent="."]
+
+[node name="Path3D" type="Path3D" parent="PathRoot"]
 curve = SubResource("Curve3D_xbb6r")
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="PathRoot/Path3D"]
 polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
 mode = 2
-path_node = NodePath("../Path3D")
+path_node = NodePath("..")
 path_interval_type = 1
 path_interval = 0.2
 path_simplify_angle = 0.0
@@ -64,13 +66,13 @@ path_continuous_u = true
 path_u_distance = 1.28
 path_joined = true
 
-[node name="Path3D2" type="Path3D" parent="."]
+[node name="Path3D2" type="Path3D" parent="PathRoot"]
 curve = SubResource("Curve3D_8itjo")
 
-[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="PathRoot/Path3D2"]
 polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
 mode = 2
-path_node = NodePath("../Path3D2")
+path_node = NodePath("..")
 path_interval_type = 1
 path_interval = 0.2
 path_simplify_angle = 0.0
@@ -80,14 +82,14 @@ path_continuous_u = true
 path_u_distance = 1.28
 path_joined = true
 
-[node name="Path3D3" type="Path3D" parent="."]
+[node name="Path3D3" type="Path3D" parent="PathRoot"]
 curve = SubResource("Curve3D_cnert")
 
-[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="."]
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="PathRoot/Path3D3"]
 snap = 1e-06
 polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
 mode = 2
-path_node = NodePath("../Path3D3")
+path_node = NodePath("..")
 path_interval_type = 1
 path_interval = 1.0
 path_simplify_angle = 0.0
