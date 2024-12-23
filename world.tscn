@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0n3q2mbjn6k3"]
+[gd_scene load_steps=10 format=3 uid="uid://d0n3q2mbjn6k3"]
 
 [ext_resource type="PackedScene" uid="uid://c0r0yoc40yjw4" path="res://player.tscn" id="1_5rmnj"]
 [ext_resource type="Script" path="res://src/world.gd" id="1_dn3g7"]
@@ -15,26 +15,13 @@ background_mode = 2
 sky = SubResource("Sky_ay0d2")
 tonemap_mode = 2
 
-[sub_resource type="Curve3D" id="Curve3D_xbb6r"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 3.125, 0, -1.99, -6.62701, 0, -4.91469, 0, 0, 0, 1.8, 0, 2.255, 3.95418, 0, -2.26843, 0.035, 0, 0.495, -1.105, 0, 2.04, 4.23933, 2.38419e-07, 2.56381, 1.03, 0, 0.13, -1.075, 0, 0.62, 1.13031, 0, 4.52261, -0.795, 0, 2.325, -0.105, 0, -0.21, -7.29054, 0, 4.23548, -0.57, 0, -0.015, 0, 0, 0, -1.85376, 0, -2.2046),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
-}
-point_count = 6
+[sub_resource type="PrismMesh" id="PrismMesh_equ1w"]
 
-[sub_resource type="Curve3D" id="Curve3D_8itjo"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 2, 0, 0, 0, 0, 0, 0, 0, 20, 1, 0, 0, 0, 0, 0, 0, 0, 30, 1, 0),
-"tilts": PackedFloat32Array(0, 0, 0, 0)
-}
-point_count = 4
+[sub_resource type="Curve3D" id="Curve3D_uokhs"]
 
-[sub_resource type="Curve3D" id="Curve3D_cnert"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0),
-"tilts": PackedFloat32Array(0, 0, 0, 0)
-}
-point_count = 4
+[sub_resource type="Curve3D" id="Curve3D_0kvio"]
+
+[sub_resource type="Curve3D" id="Curve3D_l0f1l"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_dn3g7")
@@ -50,8 +37,11 @@ shadow_enabled = true
 
 [node name="PathRoot" type="Node3D" parent="."]
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathRoot"]
+mesh = SubResource("PrismMesh_equ1w")
+
 [node name="Path3D" type="Path3D" parent="PathRoot"]
-curve = SubResource("Curve3D_xbb6r")
+curve = SubResource("Curve3D_uokhs")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="PathRoot/Path3D"]
 polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
@@ -67,7 +57,7 @@ path_u_distance = 1.28
 path_joined = true
 
 [node name="Path3D2" type="Path3D" parent="PathRoot"]
-curve = SubResource("Curve3D_8itjo")
+curve = SubResource("Curve3D_0kvio")
 
 [node name="CSGPolygon3D2" type="CSGPolygon3D" parent="PathRoot/Path3D2"]
 polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
@@ -83,7 +73,7 @@ path_u_distance = 1.28
 path_joined = true
 
 [node name="Path3D3" type="Path3D" parent="PathRoot"]
-curve = SubResource("Curve3D_cnert")
+curve = SubResource("Curve3D_l0f1l")
 
 [node name="CSGPolygon3D3" type="CSGPolygon3D" parent="PathRoot/Path3D3"]
 snap = 1e-06
