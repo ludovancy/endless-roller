@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var points_in_curve : int = 10
-@export var init_speed : float = 0.1
+@export var init_speed : float = 0.15
 var speed = init_speed
 var t : float = 0
 
@@ -30,33 +30,36 @@ func generate_path(index:int):
 			paths[index].curve.add_point(Vector3.ZERO)
 			continue
 		paths[index].curve.add_point(
-		Vector3(i*10, randf_range(0,2), randf_range(-3, 3)))
+		Vector3(randf_range(-5, 5), 0, i*10))
 	# place path
-	paths[index].position = paths[(index - 1) % max_paths].position
+	var prev_path_index = posmod((index - 1), max_paths)
+	var prev_path_pos := paths[prev_path_index].position
 	var last_point : Vector3 = Vector3.ZERO
-	if paths[(index - 1) % max_paths].curve.point_count > 0:
-		last_point = paths[(index - 1) % max_paths].curve.get_point_position(
-			paths[(index - 1) % max_paths].curve.point_count - 1
+	if paths[prev_path_index].curve.point_count > 0:
+		last_point = paths[prev_path_index].curve.get_point_position(
+			paths[prev_path_index].curve.point_count - 1
 		)
-	paths[index].position += last_point
+	paths[index].position = prev_path_pos + last_point
 
 func cycle_path():
-	# get starting position of new path
-	var starting_position : = path_root.position
+	var initial_location : Vector3 = \
+	paths[path_index].curve.get_point_position(
+		paths[path_index].curve.point_count - 1
+	)
 	# move everything back
-	path_root.position = Vector3.ZERO
 	for i in range(max_paths):
-		paths[i].position = Vector3.ZERO + starting_position
+		paths[i].translate(-1 * initial_location)
 	# advance
 	path_index = (path_index + 1) % max_paths
-	generate_path((path_index - 2) % max_paths)
+	generate_path(posmod((path_index - 2), max_paths)) # no negative numbers
 
 func _process(delta: float) -> void:
 	t += delta * speed
-	var move := paths[path_index].curve.sample_baked_with_rotation(
-		t * paths[path_index].curve.get_baked_length(), true)
-	path_root.transform = move.inverse()
-	player.transform.basis = move.basis
 	if t >= 1.0:
 		t -= 1.0
 		cycle_path()
+	var move := paths[path_index].curve.sample_baked_with_rotation(
+		t * paths[path_index].curve.get_baked_length(), true)
+	print(move)
+	path_root.transform = move.inverse()
+	#path_root.transform = Transform3D(Basis(), Vector3(0, 0, -t * 90))

@@ -28,3 +28,5 @@ func _input(event: InputEvent) -> void:
 			$Camera3D.rotation.y = -90
 		if event.is_action_pressed("ui_up"):
 			$Camera3D.rotation.y = 0
+		if event.is_action_pressed("ui_down"):
+			$Camera3D.rotation.y = 180
