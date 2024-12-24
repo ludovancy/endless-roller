@@ -31,6 +31,7 @@ func generate_path(index:int):
 			continue
 		paths[index].curve.add_point(
 		Vector3(randf_range(-5, 5), 0, i*10))
+	update_control_points(0.7, paths[index].curve)
 	# place path
 	var prev_path_index = posmod((index - 1), max_paths)
 	var prev_path_pos := paths[prev_path_index].position
@@ -63,3 +64,27 @@ func _process(delta: float) -> void:
 	print(move)
 	path_root.transform = move.inverse()
 	#path_root.transform = Transform3D(Basis(), Vector3(0, 0, -t * 90))
+
+#Convert Catmull-Rom to Bezier (Curve3D)
+#For more information check out this paper:
+#Tayebi Arasteh, S., & Kalisz, A. (2021). Conversion Between Cubic Bezier Curves and 
+#Catmull–Rom Splines.
+func update_control_points(torsion, curve):
+	
+	var k=torsion/3
+	
+	var pc=curve.get_point_count()
+	
+	if(pc<=1):
+		return
+	
+	for i in range(0,pc-1):
+		curve.set_point_out(i,k*(curve.get_point_position((i+1)%pc)-curve.get_point_position(fposmod(i-1, pc))))
+		curve.set_point_in((i+1)%pc,-k*(curve.get_point_position((i+2)%pc)-curve.get_point_position(i%pc)))
+	
+	if(curve.get_point_position(0)==curve.get_point_position(pc-1)):
+		curve.set_point_out(0,k*(curve.get_point_position(1)-curve.get_point_position(pc-2)))
+		curve.set_point_in(pc-1,-k*(curve.get_point_position(1)-curve.get_point_position(pc-2)))
+	else:
+		curve.set_point_out(0,k*(curve.get_point_position(1)-curve.get_point_position(0)))
+		curve.set_point_in(pc-1,-k*(curve.get_point_position(pc-1)-curve.get_point_position(pc-2)))
