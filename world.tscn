@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0n3q2mbjn6k3"]
+[gd_scene load_steps=6 format=3 uid="uid://d0n3q2mbjn6k3"]
 
 [ext_resource type="PackedScene" uid="uid://c0r0yoc40yjw4" path="res://player.tscn" id="1_5rmnj"]
 [ext_resource type="Script" path="res://src/world.gd" id="1_dn3g7"]
@@ -15,27 +15,6 @@ background_mode = 2
 sky = SubResource("Sky_ay0d2")
 tonemap_mode = 2
 
-[sub_resource type="PrismMesh" id="PrismMesh_equ1w"]
-size = Vector3(1, 300, 1)
-
-[sub_resource type="Curve3D" id="Curve3D_uokhs"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvcfm"]
-albedo_color = Color(1, 0.44, 0.44, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_a1aqu"]
-height = 40.0
-
-[sub_resource type="Curve3D" id="Curve3D_0kvio"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uy5lb"]
-albedo_color = Color(0.64, 1, 0.724, 1)
-
-[sub_resource type="Curve3D" id="Curve3D_l0f1l"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf5i2"]
-albedo_color = Color(0.991667, 0.5, 1, 1)
-
 [node name="World" type="Node3D"]
 script = ExtResource("1_dn3g7")
 
@@ -50,103 +29,3 @@ shadow_enabled = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="PathRoot" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathRoot"]
-mesh = SubResource("PrismMesh_equ1w")
-
-[node name="Node3D" type="Node3D" parent="PathRoot"]
-
-[node name="Path3D" type="Path3D" parent="PathRoot/Node3D"]
-curve = SubResource("Curve3D_uokhs")
-
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="PathRoot/Node3D/Path3D"]
-polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 1
-path_interval = 0.2
-path_simplify_angle = 0.0
-path_rotation = 2
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.28
-path_joined = true
-material = SubResource("StandardMaterial3D_hvcfm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathRoot/Node3D/Path3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-mesh = SubResource("CylinderMesh_a1aqu")
-
-[node name="Node3D2" type="Node3D" parent="PathRoot"]
-
-[node name="Path3D2" type="Path3D" parent="PathRoot/Node3D2"]
-curve = SubResource("Curve3D_0kvio")
-
-[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="PathRoot/Node3D2/Path3D2"]
-polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 1
-path_interval = 0.2
-path_simplify_angle = 0.0
-path_rotation = 2
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.28
-path_joined = true
-material = SubResource("StandardMaterial3D_uy5lb")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="PathRoot/Node3D2/Path3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-mesh = SubResource("CylinderMesh_a1aqu")
-skeleton = NodePath("../../../Node3D/Path3D")
-
-[node name="Node3D3" type="Node3D" parent="PathRoot"]
-
-[node name="Path3D4" type="Path3D" parent="PathRoot/Node3D3"]
-curve = SubResource("Curve3D_l0f1l")
-
-[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="PathRoot/Node3D3/Path3D4"]
-snap = 1e-06
-polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 1
-path_interval = 1.0
-path_simplify_angle = 0.0
-path_rotation = 2
-path_local = false
-path_continuous_u = true
-path_u_distance = 0.54
-path_joined = true
-material = SubResource("StandardMaterial3D_mf5i2")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="PathRoot/Node3D3/Path3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-mesh = SubResource("CylinderMesh_a1aqu")
-skeleton = NodePath("../../../Node3D/Path3D")
-
-[node name="Node3D4" type="Node3D" parent="PathRoot"]
-
-[node name="Path3D3" type="Path3D" parent="PathRoot/Node3D4"]
-curve = SubResource("Curve3D_l0f1l")
-
-[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="PathRoot/Node3D4/Path3D3"]
-snap = 1e-06
-polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 1
-path_interval = 1.0
-path_simplify_angle = 0.0
-path_rotation = 2
-path_local = false
-path_continuous_u = true
-path_u_distance = 0.54
-path_joined = true
-material = SubResource("StandardMaterial3D_mf5i2")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="PathRoot/Node3D4/Path3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-mesh = SubResource("CylinderMesh_a1aqu")
-skeleton = NodePath("../../../Node3D/Path3D")
