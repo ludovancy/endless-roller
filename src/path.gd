@@ -7,7 +7,11 @@ extends Node3D
 var points_in_curve : int = 10
 
 func _ready() -> void:
-	csg_polygon_3d.material
+	csg_polygon_3d.mial
+	get_parent().connect("set_points_in_curve", set_points_in_curve)
+
+func set_points_in_curve(points : int):
+	points_in_curve = points
 
 func get_baked_point(t: float) -> Transform3D:
 	return path.curve.sample_baked_with_rotation(

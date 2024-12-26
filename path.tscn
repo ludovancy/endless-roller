@@ -8,7 +8,7 @@ albedo_color = Color(1, 0.44, 0.44, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_uokhs"]
 
-[node name="Node3D" type="Node3D"]
+[node name="CustomPath" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)

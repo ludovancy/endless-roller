@@ -1,10 +1,12 @@
 extends Node3D
 
+signal set_points_in_curve(n : int)
+
 @export var points_in_curve : int = 10
 @export var init_speed : float = 0.1
 var speed = init_speed
 var t : float = 0
-const PATH = preload("res://path.tscn")
+const path_obj = preload("res://path.tscn")
 @onready var player: Node3D = $Player
 @onready var path_root: Node3D = $PathRoot
 
@@ -16,11 +18,11 @@ var path_index := 0
 func _ready():
 	# create paths 
 	for i in range(max_paths):
-		var p = PATH.instantiate()
+		var p : CustomPath = path_obj.instantiate()
 		paths.append(p)
 		path_root.add_child(p)
-		p.points_in_curve = points_in_curve
 	# generate max paths
+	set_points_in_curve.emit(points_in_curve)
 	for i in range(max_paths):
 		generate_path(i)
 
