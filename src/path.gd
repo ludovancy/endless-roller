@@ -4,11 +4,14 @@ extends Node3D
 @onready var path: Path3D = $Path3D
 @onready var csg_polygon_3d: CSGPolygon3D = $CSGPolygon3D
 
-var points_in_curve : int = 10
+@export var points_in_curve : int = 10
 
 func _ready() -> void:
-	csg_polygon_3d.mial
-	get_parent().connect("set_points_in_curve", set_points_in_curve)
+	var mat = csg_polygon_3d.material
+	if is_instance_of(mat, StandardMaterial3D):
+		mat.albedo_color = Color(randf_range(.7, 1.0), 
+				randf_range(.2, 1.0), 
+				randf_range(.7, 1.0))
 
 func set_points_in_curve(points : int):
 	points_in_curve = points

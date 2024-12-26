@@ -1,7 +1,5 @@
 extends Node3D
 
-signal set_points_in_curve(n : int)
-
 @export var points_in_curve : int = 10
 @export var init_speed : float = 0.1
 var speed = init_speed
@@ -20,14 +18,14 @@ func _ready():
 	for i in range(max_paths):
 		var p : CustomPath = path_obj.instantiate()
 		paths.append(p)
+		p.set_points_in_curve(points_in_curve)
 		path_root.add_child(p)
 	# generate max paths
-	set_points_in_curve.emit(points_in_curve)
 	for i in range(max_paths):
 		generate_path(i)
 
 func generate_path(index:int):
-	var prev_path_index := posmod(path_index - 1, max_paths)
+	var prev_path_index := posmod(index - 1, max_paths)
 	var prev_path_pos := paths[prev_path_index].position
 	var last_point := paths[prev_path_index].get_last_point_position()
 	paths[index].make_new_path(prev_path_pos, last_point)
