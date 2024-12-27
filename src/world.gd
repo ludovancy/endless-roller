@@ -48,6 +48,5 @@ func _process(delta: float) -> void:
 		cycle_path()
 	var move := paths[path_index].get_baked_point(t)
 	print(move)
-	#path_root.transform = move.inverse()
-	path_root.transform = Transform3D(Basis(), 
-		Vector3(0, 0, -t * (points_in_curve - 1) * 10))
+	path_root.transform = move.inverse()
+	player.basis = move.basis.rotated(Vector3.UP, PI)
