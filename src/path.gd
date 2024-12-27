@@ -5,13 +5,16 @@ extends Node3D
 @onready var csg_polygon_3d: CSGPolygon3D = $CSGPolygon3D
 
 @export var points_in_curve : int = 10
+@export var custom_material := preload("res://res/path.tres")
 
 func _ready() -> void:
+	var material_color = Color(randf_range(0.3, 0.8),
+			randf_range(0.3, 0.8),
+			randf_range(0.3, 0.8))
 	var mat = csg_polygon_3d.material
 	if is_instance_of(mat, StandardMaterial3D):
-		mat.albedo_color = Color(randf_range(.7, 1.0), 
-				randf_range(.2, 1.0), 
-				randf_range(.7, 1.0))
+		mat.albedo_color = material_color
+
 
 func set_points_in_curve(points : int):
 	points_in_curve = points

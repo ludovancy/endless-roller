@@ -1,12 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://32n2mkmfomch"]
 
 [ext_resource type="Script" path="res://src/path.gd" id="1_0tngy"]
+[ext_resource type="Material" uid="uid://bgovks7oliqog" path="res://res/path.tres" id="2_e6nam"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_a1aqu"]
 height = 40.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ca6st"]
-albedo_color = Color(1, 0.48, 0.48, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_uokhs"]
 
@@ -30,7 +28,7 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.28
 path_joined = true
-material = SubResource("StandardMaterial3D_ca6st")
+material = ExtResource("2_e6nam")
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_uokhs")
