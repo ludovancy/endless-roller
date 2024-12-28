@@ -33,7 +33,6 @@ func generate_path(index:int):
 func cycle_path():
 	var initial_location := paths[path_index].get_last_point_position()
 	print(initial_location)
-	initial_location = Vector3(0,0,(points_in_curve - 1) * 10)
 	# move everything back
 	for i in range(max_paths):
 		paths[i].translate(-1 * initial_location)
@@ -47,6 +46,5 @@ func _process(delta: float) -> void:
 		t -= 1.0
 		cycle_path()
 	var move := paths[path_index].get_baked_point(t)
-	print(move)
 	path_root.transform = move.inverse()
 	player.basis = move.basis.rotated(Vector3.UP, PI)

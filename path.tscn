@@ -27,7 +27,7 @@ path_rotation = 1
 path_local = true
 path_continuous_u = true
 path_u_distance = 1.28
-path_joined = true
+path_joined = false
 material = ExtResource("2_e6nam")
 
 [node name="Path3D" type="Path3D" parent="."]

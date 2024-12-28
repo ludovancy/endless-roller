@@ -38,7 +38,7 @@ func make_new_path(
 			path.curve.add_point(Vector3.ZERO)
 			continue
 		path.curve.add_point(
-		Vector3(randf_range(-5, 5), 0, i*10))
+		Vector3(randf_range(-2, 2), randf_range(-2, 2), i*10))
 	update_control_points(0.7)
 	# place path
 	position = prev_path_pos + last_point
