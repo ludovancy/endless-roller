@@ -7,6 +7,7 @@
 height = 40.0
 
 [sub_resource type="Curve3D" id="Curve3D_uokhs"]
+resource_local_to_scene = true
 
 [node name="CustomPath" type="Node3D"]
 script = ExtResource("1_0tngy")
