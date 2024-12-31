@@ -4,7 +4,7 @@ extends Node3D
 @onready var path: Path3D = $Path3D
 @onready var csg_polygon_3d: CSGPolygon3D = $CSGPolygon3D
 
-@export var points_in_curve : int = 10
+@export var points_in_curve : int = 12
 @export var custom_material := preload("res://res/path.tres")
 
 func _ready() -> void:
@@ -34,15 +34,14 @@ func make_new_path(
 	path.curve.clear_points()
 	# procedural generation
 	for i in range(points_in_curve):
-		if i == 0:
-			path.curve.add_point(Vector3.ZERO)
+		if i < 2 or i > points_in_curve - 3:
+			path.curve.add_point(Vector3(0, 0, i*10))
 			continue
 		path.curve.add_point(
 		Vector3(randf_range(-2, 2), randf_range(-2, 2), i*10))
 	update_control_points(0.7)
 	# place path
 	position = prev_path_pos + last_point
-	print(position)
 
 #Convert Catmull-Rom to Bezier (Curve3D)
 #For more information check out this paper:
