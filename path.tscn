@@ -1,21 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://32n2mkmfomch"]
+[gd_scene load_steps=4 format=3 uid="uid://32n2mkmfomch"]
 
 [ext_resource type="Script" path="res://src/path.gd" id="1_0tngy"]
 [ext_resource type="Material" uid="uid://bgovks7oliqog" path="res://res/path.tres" id="2_e6nam"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_a1aqu"]
-height = 40.0
-
 [sub_resource type="Curve3D" id="Curve3D_uokhs"]
 resource_local_to_scene = true
+up_vector_enabled = false
 
 [node name="CustomPath" type="Node3D"]
 script = ExtResource("1_0tngy")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-mesh = SubResource("CylinderMesh_a1aqu")
-skeleton = NodePath("../Path3D")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
 polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
