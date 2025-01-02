@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var points_in_curve : int = 10
-@export var init_speed : float = 0.1
+@export var init_speed : float = 0.08
 var speed = init_speed
 var t : float = 0
 const path_obj = preload("res://path.tscn")
@@ -32,7 +32,6 @@ func generate_path(index:int):
 
 func cycle_path():
 	var initial_location := paths[path_index].get_last_point_position()
-	print(initial_location)
 	# move everything back
 	for i in range(max_paths):
 		paths[i].translate(-1 * initial_location)

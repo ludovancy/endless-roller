@@ -35,10 +35,10 @@ func make_new_path(
 	# procedural generation
 	for i in range(points_in_curve):
 		if i < 2 or i > points_in_curve - 3:
-			path.curve.add_point(Vector3(0, 0, i*10))
+			path.curve.add_point(Vector3(0, 0, i*100))
 			continue
 		path.curve.add_point(
-		Vector3(randf_range(-2, 2), randf_range(-2, 2), i*10))
+		Vector3(randf_range(-20, 20), randf_range(-20, 20), i*100))
 	update_control_points(0.7)
 	# place path
 	position = prev_path_pos + last_point
