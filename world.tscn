@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0n3q2mbjn6k3"]
+[gd_scene load_steps=7 format=3 uid="uid://d0n3q2mbjn6k3"]
 
 [ext_resource type="PackedScene" uid="uid://c0r0yoc40yjw4" path="res://player.tscn" id="1_5rmnj"]
 [ext_resource type="Script" path="res://src/world.gd" id="1_dn3g7"]
+[ext_resource type="PackedScene" uid="uid://ckx70j7rbmmvk" path="res://pause.tscn" id="3_hhmwm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ilida"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -28,3 +29,5 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_5rmnj")]
 
 [node name="PathRoot" type="Node3D" parent="."]
+
+[node name="Pause" parent="." instance=ExtResource("3_hhmwm")]

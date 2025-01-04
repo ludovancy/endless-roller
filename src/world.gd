@@ -7,6 +7,7 @@ var t : float = 0
 const path_obj = preload("res://path.tscn")
 @onready var player: Node3D = $Player
 @onready var path_root: Node3D = $PathRoot
+@onready var pause: Control = $Pause
 
 @export var max_paths : int = 4
 
@@ -23,6 +24,11 @@ func _ready():
 	# generate max paths
 	for i in range(max_paths):
 		generate_path(i)
+	pause.connect('unpause', _on_unpause)
+	speed = 0
+
+func _on_unpause():
+	speed = init_speed
 
 func generate_path(index:int):
 	var prev_path_index := posmod(index - 1, max_paths)
