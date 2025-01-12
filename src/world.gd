@@ -3,7 +3,7 @@ extends Node3D
 @export var points_in_curve : int = 10
 @export var init_speed : float = 0.08
 var speed = init_speed
-var t : float = 0
+var t : float = .03
 const path_obj = preload("res://path.tscn")
 @onready var player: Node3D = $Player
 @onready var path_root: Node3D = $PathRoot
