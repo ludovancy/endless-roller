@@ -5,7 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://ckx70j7rbmmvk" path="res://pause.tscn" id="3_hhmwm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ilida"]
+sky_top_color = Color(0.160363, 0.473134, 0.688061, 1)
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_bottom_color = Color(0.633446, 0.565208, 0.486532, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
 [sub_resource type="Sky" id="Sky_ay0d2"]
