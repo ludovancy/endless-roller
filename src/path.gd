@@ -49,7 +49,7 @@ func make_new_path(
 #Catmull–Rom Splines.
 func update_control_points(torsion):
 	
-	var k=torsion/3
+	var k : float = torsion/3
 	
 	var pc=path.curve.get_point_count()
 	
@@ -57,7 +57,9 @@ func update_control_points(torsion):
 		return
 	
 	for i in range(0,pc-1):
-		path.curve.set_point_out(i,k*(path.curve.get_point_position((i+1)%pc)-path.curve.get_point_position(fposmod(i-1, pc))))
+		var new_position : = path.curve.get_point_position((i+1)%pc) - \
+					path.curve.get_point_position(posmod(i-1, pc))
+		path.curve.set_point_out(i,k*new_position)
 		path.curve.set_point_in((i+1)%pc,-k*(path.curve.get_point_position((i+2)%pc)-path.curve.get_point_position(i%pc)))
 	
 	if(path.curve.get_point_position(0)==path.curve.get_point_position(pc-1)):
