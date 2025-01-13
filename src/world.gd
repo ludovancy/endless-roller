@@ -50,5 +50,6 @@ func _process(delta: float) -> void:
 	if t >= 1.0:
 		t -= 1.0
 		cycle_path()
-	var move := paths[path_index].get_baked_point(t)
-	path_root.transform = move.inverse()
+	var move : Transform3D = paths[path_index].get_baked_point(t)
+	path_root.position = -move.origin
+	player.basis = move.basis
