@@ -28,13 +28,11 @@ jobs:
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
           cd $EXPORT_DIR
-          pwd
-          ls -la
-          zip -r HTML5.zip web
+          zip -r web/HTML5.zip web
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: web
+          name: HTML5
           path: build/web
   
 
@@ -45,7 +43,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
-          name: build/web
+          name: HTML5
       - name: Deploy to Itch.io (HTML5)
         uses: manleydev/butler-publish-itchio-action@master
         env:
