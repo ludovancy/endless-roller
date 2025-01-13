@@ -4,7 +4,6 @@ on: [push, pull_request]
 
 env:
   GODOT_VERSION: 4.3
-  EXPORT_NAME: ${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}
   PROJECT_PATH: .
 
 jobs:
@@ -24,17 +23,16 @@ jobs:
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Web Build
         run: |
-          echo $EXPORT_NAME
           mkdir -v -p build/web
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
-          zip -r $PROJECT_PATH/HTML5.zip $EXPORT_DIR/web 
+          zip -r $EXPORT_DIR/HTML5.zip $EXPORT_DIR/web 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: HTML5
-          path: $PROJECT_PATH/HTML5.zip
+          path: build/HTML5.zip
 
   deploy-to-itchio-web:
     runs-on: ubuntu-latest
