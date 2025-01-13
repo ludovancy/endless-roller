@@ -44,6 +44,9 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: HTML5
+      - name: List items
+        run: |
+          ls -la
       - name: Deploy to Itch.io (HTML5)
         uses: manleydev/butler-publish-itchio-action@master
         env:
