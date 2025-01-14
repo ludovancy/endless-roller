@@ -3,6 +3,9 @@ extends Node3D
 
 @onready var path: Path3D = $Path3D
 @onready var csg_polygon_3d: CSGPolygon3D = $CSGPolygon3D
+@onready var objects: Node3D = $Objects
+
+const COIN = preload("res://coin.tscn")
 
 @export var points_in_curve : int = 12
 @export var custom_material := preload("res://res/path.tres")
@@ -14,7 +17,6 @@ func _ready() -> void:
 	var mat = csg_polygon_3d.material
 	if is_instance_of(mat, StandardMaterial3D):
 		mat.albedo_color = material_color
-
 
 func set_points_in_curve(points : int):
 	points_in_curve = points
@@ -40,6 +42,18 @@ func make_new_path(
 		path.curve.add_point(
 		Vector3(randf_range(-20, 20), randf_range(-20, 20), i*100))
 	update_control_points(0.7)
+	position = Vector3.ZERO
+	
+	# clear objects
+	for child in objects.get_children():
+		child.queue_free()
+	
+	# place new objects
+	for i in range(8):
+		var c : Node3D = COIN.instantiate()
+		c.transform = get_baked_point((i + 2) * .09)
+		objects.add_child(c)
+
 	# place path
 	position = prev_path_pos + last_point
 

@@ -27,3 +27,5 @@ material = ExtResource("2_e6nam")
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_uokhs")
+
+[node name="Objects" type="Node3D" parent="."]
