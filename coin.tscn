@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw8nqv8o0etuq"]
+[gd_scene load_steps=4 format=3 uid="uid://cw8nqv8o0etuq"]
+
+[ext_resource type="Script" path="res://src/coin.gd" id="1_6b3n5"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_4hvqw"]
 
-[node name="Coin" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_rbgel"]
+radius = 0.7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Coin" type="Node3D"]
+script = ExtResource("1_6b3n5")
+
+[node name="Base" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.690753, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Base"]
 mesh = SubResource("SphereMesh_4hvqw")
+skeleton = NodePath("../..")
+
+[node name="CollisionPolygon3D" type="CollisionShape3D" parent="Base"]
+shape = SubResource("SphereShape3D_rbgel")
