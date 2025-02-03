@@ -6,3 +6,8 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	base.position.x = randf_range(-width / 2, width / 2)
+
+
+func _on_base_body_entered(body: Node3D) -> void:
+	print("Coin")
+	queue_free()

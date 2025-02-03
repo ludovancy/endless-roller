@@ -21,6 +21,11 @@ window/size/viewport_width=480
 window/size/viewport_height=640
 window/handheld/orientation=1
 
+[layer_names]
+
+3d_physics/layer_2="Player"
+3d_physics/layer_5="Coin"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
