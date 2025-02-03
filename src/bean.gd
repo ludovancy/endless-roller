@@ -10,7 +10,7 @@ func _ready() -> void:
 	base.position.x = randf_range(-width / 2, width / 2)
 	animation_player.speed_scale = randf_range(1, 2)
 	animation_player.play("rotate")
-
+	mesh_instance_3d.material_override
 
 func _on_base_body_entered(body: Node3D) -> void:
 	print("Coin")

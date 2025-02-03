@@ -52,6 +52,7 @@ collision_layer = 16
 collision_mask = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.35, 0)
 mesh = ExtResource("2_kv3ox")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Base/MeshInstance3D"]
