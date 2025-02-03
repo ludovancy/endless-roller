@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var points_in_curve : int = 10
-@export var init_speed : float = 0.08
+@export var init_speed : float = 0.05
 var speed = init_speed
 var t : float = .03
 const path_obj = preload("res://path.tscn")

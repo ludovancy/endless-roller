@@ -1,7 +1,7 @@
 extends Node3D
 @onready var base: Area3D = $Base
-@onready var bean: Node3D = $Base/bean
-@onready var animation_player: AnimationPlayer = $Base/bean/AnimationPlayer
+@onready var mesh_instance_3d: MeshInstance3D = $Base/MeshInstance3D
+@onready var animation_player: AnimationPlayer = $Base/MeshInstance3D/AnimationPlayer
 
 @export var width = 8.0
 
@@ -14,5 +14,5 @@ func _ready() -> void:
 
 func _on_base_body_entered(body: Node3D) -> void:
 	print("Coin")
-	bean.visible = false
+	mesh_instance_3d.visible = false
 	queue_free()
