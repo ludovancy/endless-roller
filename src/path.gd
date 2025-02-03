@@ -5,7 +5,7 @@ extends Node3D
 @onready var csg_polygon_3d: CSGPolygon3D = $CSGPolygon3D
 @onready var objects: Node3D = $Objects
 
-const COIN = preload("res://coin.tscn")
+const COIN = preload("res://bean.tscn")
 
 @export var points_in_curve : int = 12
 @export var custom_material := preload("res://res/path.tres")
