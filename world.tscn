@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://d0n3q2mbjn6k3"]
 
 [ext_resource type="PackedScene" uid="uid://c0r0yoc40yjw4" path="res://player.tscn" id="1_5rmnj"]
-[ext_resource type="Script" path="res://src/world.gd" id="1_dn3g7"]
+[ext_resource type="Script" uid="uid://dgmutj55rwav5" path="res://src/world.gd" id="1_dn3g7"]
 [ext_resource type="Texture2D" uid="uid://koyl01lc7rco" path="res://assets/img/PurplyBlueSky.png" id="2_plc8w"]
 [ext_resource type="PackedScene" uid="uid://ckx70j7rbmmvk" path="res://pause.tscn" id="3_hhmwm"]
 
